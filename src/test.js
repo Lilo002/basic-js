@@ -1,22 +1,22 @@
-function getCommonCharacterCount(s1, s2) {
-    const arrFirst = s1.split('');
-    const arrSecond = s2.split('');
-    let counter = 0;
+function deleteDigit(n) {
+  let maxNum = 0;
+  let arrFromNumber = n.toString().split('');
 
-    for (let i = 0; i < arrFirst.length; i += 1) {
-      for (let x = 0; x < arrSecond.length; x += 1) {
-
-        if (arrFirst[i] === arrSecond[x]) {
-            console.log(arrSecond)
-            console.log(arrSecond[x])
-          arrSecond.splice(x, 1);
-          console.log(arrSecond)
-          counter += 1;
-          x = 0;
-          i += 1;
+  arrFromNumber.forEach((item, index) => {
+    let arr = [];
+    for (let i = 0; i < arrFromNumber.length; i += 1) {
+        if (index !== i) {
+            arr.push(arrFromNumber[i]);
         }
-      }
+        
     }
-    return counter;
-  }
-  console.log(getCommonCharacterCount('aabcc', 'adcaa'))
+    let newNumber = parseInt(arr.join(''));
+    console.log(newNumber);
+    if (newNumber > maxNum) {
+        maxNum = newNumber;
+    }
+  })
+
+  return maxNum;
+}
+  console.log(deleteDigit(324464526))
