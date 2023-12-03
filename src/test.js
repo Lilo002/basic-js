@@ -1,22 +1,29 @@
-function deleteDigit(n) {
-  let maxNum = 0;
-  let arrFromNumber = n.toString().split('');
-
-  arrFromNumber.forEach((item, index) => {
-    let arr = [];
-    for (let i = 0; i < arrFromNumber.length; i += 1) {
-        if (index !== i) {
-            arr.push(arrFromNumber[i]);
+function encodeLine(str) {
+  let arr = str.split('');
+  let newStr = '';
+while(arr.length) {
+  for (let x = 0; x < arr.length; x += 1) {
+    let counter = 1;
+    console.log(arr);
+    for (let i = 0; i < arr.length; i += 1) {
+      console.log(arr[i])
+      if (x !== i) {
+        if (arr[x] !== arr[i]) {
+          break;
         }
-        
+        counter += 1;
+      }
     }
-    let newNumber = parseInt(arr.join(''));
-    console.log(newNumber);
-    if (newNumber > maxNum) {
-        maxNum = newNumber;
+    newStr += `${counter > 1 ? counter : ''}${arr[0]}`;
+    arr.splice(0, counter);
+      if (arr.length) {
+        x = 0;
+        i = 0;
     }
-  })
-
-  return maxNum;
+  }
 }
-  console.log(deleteDigit(324464526))
+  
+  return newStr;
+}
+
+  console.log(encodeLine('xyz'))
