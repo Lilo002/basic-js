@@ -23,7 +23,6 @@ function createDreamTeam(members) {
     }
     return acc + cur.trim()[0].toUpperCase();
   }, '');
-
   return teamName.split('').sort().join('');
 }
 
