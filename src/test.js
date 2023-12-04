@@ -1,27 +1,25 @@
-function getDNSStats(domains) {
-  let DNSObj = {};
+function renameFiles(names) {
+  let arr = [];
 
-  for( let i = 0; i < domains.length; i += 1) {
-    let arr = domains[i].split('.');
-    for (let x = arr.length; x >= 0; x -= 1) {
-      let DNSArr = [];
-      let counter = x;
-
-      while(counter < arr.length) {
-        DNSArr.push(`.${arr[counter]}`);
-        counter ++;
+  for (let i = 0; i < names.length; i += 1) {
+    console.log(parseInt(names[i][names[i].length - 2]))
+    if (!arr.includes(names[i])) {
+      arr.push(names[i]);
+    } else if (parseInt(names[i][names[i].length - 2])){
+      arr.push(`${names[i]}(1)`);
+    } else {
+      let counter = 0;
+      for (let x = 0; x < i; x += 1) {
+        if(x !== i && names[i] === names[x]){
+          counter += 1;
+        }
       }
-
-      let DNSStr = DNSArr.reverse().join('');
-
-      if (DNSObj.hasOwnProperty(DNSStr) && DNSStr) {
-        DNSObj[DNSStr] += 1;
-      } else if (DNSStr) {
-        DNSObj[DNSStr] = 1;
-      }
+      arr.push(`${names[i]}(${counter})`);
     }
   }
-  return DNSObj
+  return arr;
 }
 
-  console.log(getDNSStats(['epam.com', 'info.epam.com']))
+console.log(renameFiles(['doc', 'doc', 'image', 'doc(1)', 'doc']));
+
+
